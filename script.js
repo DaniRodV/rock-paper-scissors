@@ -1,3 +1,9 @@
+let humanScore = 0;
+let computerScore = 0;
+
+console.log(`Player score: ${humanScore}`);
+console.log(`Computer score: ${computerScore}`);
+
 function getComputerChoice() {
     // Generate random number between 1 and 3
    const randomNumber = Math.floor(Math.random() * 3) + 1;
