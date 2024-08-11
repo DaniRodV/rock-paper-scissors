@@ -1,5 +1,69 @@
+// Score variables
 let humanScore = 0;
 let computerScore = 0;
+
+console.log(`Player score: ${humanScore}`);
+console.log(`Computer score: ${computerScore}`);
+
+function playRound (humanChoice, computerChoice) {
+    
+    let roundResult;
+
+    switch (humanChoice) {
+        case "rock":
+            if (computerChoice === "scissors") {
+                roundResult = "You win! Rock beats scissors.";
+                humanScore++;
+            } else if (computerChoice === "paper") {
+                roundResult = "You lose! Paper beats rock.";
+                computerScore++;
+            } else {
+                roundResult = "It's a tie.";
+            }
+
+            break;
+        
+        case "paper":
+            if (computerChoice === "rock") {
+                roundResult = "You win! Paper beats rock.";
+                humanScore++;
+            } else if (computerChoice === "scissors") {
+                roundResult = "You lose! Scissors beat paper."
+                computerScore++;
+            } else {
+                roundResult = "It's a tie."
+            }
+
+            break;
+        
+        case "scissors":
+            if (computerChoice === "paper") {
+                roundResult = "You win! Scissors beat paper.";
+                humanScore++;
+            } else if (computerChoice === "rock") {
+                roundResult = "You lose! Rock beats scissors."
+                computerScore++;
+            } else {
+                roundResult = "It's a tie."
+            }
+
+            break;
+
+        default:
+            roundResult = "Invalid choice.";
+    }
+
+    console.log(roundResult);
+    return roundResult;
+}
+
+const humanSelection = getHumanChoice();
+console.log(`Player chose: ${humanSelection}`);
+
+const computerSelection = getComputerChoice();
+console.log(`Computer chose: ${computerSelection}`);
+
+playRound(humanSelection, computerSelection);
 
 console.log(`Player score: ${humanScore}`);
 console.log(`Computer score: ${computerScore}`);
@@ -18,9 +82,6 @@ function getComputerChoice() {
    }
 }
 
-const computerChoice = getComputerChoice();
-console.log(`Computer chose: ${computerChoice}`);
-
 function getHumanChoice () {
     //Get human choice
     let playerInput = prompt("Rock, paper, scissors?", "").toLowerCase();
@@ -32,6 +93,3 @@ function getHumanChoice () {
         return "Invalid";
     }
 }
-
-let humanChoice = getHumanChoice();
-console.log(`Player chose: ${humanChoice}`);
