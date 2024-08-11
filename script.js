@@ -14,3 +14,18 @@ function getComputerChoice() {
 
 const computerChoice = getComputerChoice();
 console.log(`Computer chose: ${computerChoice}`);
+
+function getHumanChoice () {
+    //Get human choice
+    let playerInput = prompt("Rock, paper, scissors?", "").toLowerCase();
+
+    if (playerInput === "rock" || playerInput === "paper" || playerInput === "scissors") {
+        return playerInput;
+    } else {
+        alert("Invalid input. Try again.")
+        return "Invalid";
+    }
+}
+
+let humanChoice = getHumanChoice();
+console.log(`Player chose: ${humanChoice}`);
