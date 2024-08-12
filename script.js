@@ -1,62 +1,86 @@
-let humanScore = 0;
-let computerScore = 0;
+alert('Press F12 and then click on the Console to view the results of the game. Click "Accept" to start.')
 
-function displayScores () {
-    console.log(`Your score: ${humanScore}`);
-    console.log(`Computer score: ${computerScore}`);
+//Function to capitalize the first letter of the return value
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-displayScores();
-
-function playRound (humanChoice, computerChoice) {
-    let roundResult;
-
-    if (humanChoice === computerChoice) {
-        roundResult = `It's a tie.`;
-    } else if (
-        (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper")) {
-        roundResult = `You win! ${humanChoice} beats ${computerChoice}`;
-        humanScore++;
-    } else {
-        roundResult = `You lose! ${computerChoice} beats ${computerChoice}`;
-        computerScore++;
-    }
-
-    console.log(roundResult);
-    return roundResult;
-
-}
-
+//Get the computer choice
+//1 = rock, 2 = paper, 3 = scissors
 function getComputerChoice () {
-    const randomNumber = Math.floor(Math.random()* 3) + 1;
+    const randomNumber = Math.floor(Math.random() * 3) + 1;
 
     if (randomNumber === 1) {
-        return "rock";
+        return "Rock";
     } else if (randomNumber === 2) {
-        return "paper";
+        return "Paper";
     } else {
-        return "scissors";
+        return "Scissors";
     }
 }
 
+//Get human choice
 function getHumanChoice () {
-    const humanInput = prompt("Rock, paper or scissors?", "").toLowerCase();
+    let humanInput = prompt("Rock, paper, scissors, shoot! What's your move?", "").toLowerCase();
 
     if (humanInput === "rock" || humanInput === "paper" || humanInput === "scissors") {
-        return humanInput;
+        return capitalizeFirstLetter(humanInput);
     } else {
-        alert("Invalid input. Try again with one of the three options given.");
-        return "Invalid.";
+        alert("Your choice is invalid. Please try again.");
+        return getHumanChoice();
     }
 }
 
-const humanSelection = getHumanChoice();
-console.log(humanSelection);
-const computerSelection = getComputerChoice();
-console.log(computerSelection);
+//Function to play five rounds
+function playGame() {
+    //Declaring score variables
+    let humanScore = 0;
+    let computerScore = 0;
 
-playRound(humanSelection, computerSelection);
+    //Function to display scores
+    function displayScores () {
+        console.log(`Your score: ${humanScore}.`);
+        console.log(`Computer score: ${computerScore}.`);
+    }
 
-displayScores();
+    //Single round
+    function playRound (humanChoice, computerChoice) {
+        let roundResult;
+
+        if (humanChoice === computerChoice) {
+            roundResult = `It's a tie. You both chose ${humanChoice}.`;
+        } else if ((humanChoice === "Rock" && computerChoice === "Scissors") ||
+            (humanChoice === "Paper" && computerChoice === "Rock") ||
+            (humanChoice === "Scissors" && computerChoice === "Paper")) {
+            roundResult = `You win! ${humanChoice} beats ${computerChoice}.`;
+            humanScore++;
+        } else {
+            roundResult = `You lose. ${computerChoice} beats ${humanChoice}.`;
+            computerScore++;
+        }
+
+        console.log(roundResult);
+
+        displayScores();
+    }
+
+    for (let i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+
+    function checkWinner () {
+        if (humanScore > computerScore) {
+            alert(`Congratulations, you have won! Refresh the page to try again.`);
+        } else if (humanScore < computerScore) {
+            alert(`Sorry, you have lost. Refresh the page to try again.`);
+        } else {
+            alert(`It's a tie! That was a close match. Refresh the page to try again.`);
+        }
+    }
+
+    return checkWinner();
+}
+
+playGame();
