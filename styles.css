@@ -1,0 +1,23 @@
+#round-number {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+#scores-container {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+#buttons-container {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+#buttons-container button {
+    padding: 16px;
+    font-size: large;
+}
