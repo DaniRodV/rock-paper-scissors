@@ -33,6 +33,7 @@ function checkWinner () {
 
         const resultsContainer = document.querySelector("#results");
         resultsContainer.textContent = finalResult;
+        resultsContainer.style.textAlign = "center";
 
         const roundCounter = document.querySelector("#round-number");
         roundCounter.textContent = " ";
@@ -62,10 +63,28 @@ function playRound (humanChoice, computerChoice) {
     const computerCounter = document.querySelector("#computer-counter");
     computerCounter.textContent = `Computer: ${computerScore}`;
 
-    //Show result of the previous round
-    const resultsPara = document.querySelector("#results");
-    resultsPara.textContent = roundResult;
-    resultsPara.style.textAlign = "center";
+    //Show human and computer choices and the result of the previous round
+    const resultsContainer = document.querySelector("#results");
+    resultsContainer.textContent = " ";
+
+    const choicesContainer = document.createElement("div");
+    choicesContainer.classList.add("choices-container")
+    resultsContainer.appendChild(choicesContainer);
+
+    const playerChoicePara = document.createElement("p");
+    playerChoicePara.textContent = `You chose: ${humanChoice}`;
+    choicesContainer.appendChild(playerChoicePara);
+
+    const computerChoicePara = document.createElement("p");
+    computerChoicePara.textContent = `Computer chose: ${computerChoice}`;
+    choicesContainer.appendChild(computerChoicePara);
+
+    const roundResultPara = document.createElement("p");
+    roundResultPara.textContent = roundResult;
+    roundResultPara.style.textAlign = "center";
+    resultsContainer.appendChild(roundResultPara);
+
+    
 
     //Show updated round
     roundNumber++;

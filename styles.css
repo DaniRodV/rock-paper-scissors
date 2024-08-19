@@ -14,10 +14,16 @@
     display: flex;
     gap: 25px;
     justify-content: center;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
 }
 
 #buttons-container button {
     padding: 16px;
     font-size: large;
+}
+
+.choices-container {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
 }
